@@ -239,6 +239,13 @@ def train_dgl(config: Union[TrainingConfig, Dict[str, Any]], model: nn.Module = 
     elif config.scheduler == "onecycle":
         steps_per_epoch = len(train_loader)
         scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,max_lr=config.learning_rate,epochs=config.epochs,steps_per_epoch=steps_per_epoch,pct_start=0.3)
+    elif config.scheduler == "cosine":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
+            optimizer,
+            T_0=20,      # 每 20 epoch 重启
+            T_mult=1,    # 周期不变
+            eta_min=1e-6
+        )
     elif config.scheduler == "step":
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer)
 

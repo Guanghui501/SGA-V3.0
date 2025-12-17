@@ -183,7 +183,7 @@ class TrainingConfig(BaseSettings):
     warmup_steps: int = 2000
     criterion: Literal["mse", "l1", "poisson", "zig", "bce"] = "mse"
     optimizer: Literal["adamw", "sgd"] = "adamw"
-    scheduler: Literal["onecycle", "none"] = "onecycle"
+    scheduler: Literal["onecycle", "cosine", "none"] = "onecycle"
     pin_memory: bool = False
     save_dataloader: bool = False
     write_checkpoint: bool = True

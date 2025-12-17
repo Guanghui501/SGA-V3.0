@@ -571,7 +571,7 @@ def create_config(args):
         "warmup_steps": args.warmup_steps,
         "criterion": "bce" if args.classification else "mse",
         "optimizer": "adamw",
-        "scheduler": "onecycle",
+        "scheduler": "cosine",
 
         "pin_memory": False,
         "save_dataloader": False,
