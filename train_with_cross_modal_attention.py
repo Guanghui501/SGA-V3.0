@@ -701,7 +701,8 @@ def main():
             args.dataset,
             args.property
         )
-        dataset_array = (train_data, val_data, test_data)
+        # 合并数据集以供 get_train_val_loaders 使用（它会重新划分）
+        dataset_array = train_data + val_data + test_data
 
     else:
         # 从原始 CIF 文件加载（慢速）
